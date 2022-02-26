@@ -88,17 +88,17 @@ public class User_poll_and_answer {
         WebElement findPoll = driver.findElement(By.xpath("//div[@class=\"bx-vote-body\"]"));
 
         //2. locate first answer choice
-        WebElement answerChoice = driver.findElement(By.xpath("//table[@class=\"bx-vote-answer-list\"]//tr[1]"));
+        //WebElement answerChoice = driver.findElement(By.xpath("//table[@class=\"bx-vote-answer-list\"]//tr[1]"));
 
-        if(answerChoice.isDisplayed()){
-            System.out.println("is displayed");
-        }else{
-            WebElement voteAgain=driver.findElement(By.xpath("//button[@data-bx-vote-button=\"showVoteForm\"]"));
-            voteAgain.click();
-        }
+//        if(answerChoice.isDisplayed()){
+//            System.out.println("is displayed");
+//        }else{
+//            WebElement voteAgain=driver.findElement(By.xpath("//button[@data-bx-vote-button=\"showVoteForm\"]"));
+//            voteAgain.click();
+//        }
 
         //2. locate first answer choice
-        answerChoice = driver.findElement(By.xpath("//table[@class=\"bx-vote-answer-list\"]//tr[1]"));
+        WebElement answerChoice = driver.findElement(By.xpath("//table[@class=\"bx-vote-answer-list\"]//tr[1]"));
 
         //3. click first answer choice
         Thread.sleep(3);
@@ -110,7 +110,7 @@ public class User_poll_and_answer {
         //5. click second answer choice
         Thread.sleep(3);
         answerChoice2.click();
-
+        System.out.println(answerChoice2.isSelected());
         //6. verify second answer choice is selected after clicking.
         if (answerChoice2.isSelected()) {
             System.out.println("Second Button is selected. Verification PASSED!");
@@ -123,7 +123,7 @@ public class User_poll_and_answer {
         WebElement locateVote = driver.findElement(By.xpath(" button[@class=\"ui-btn ui-btn-lg ui-btn-primary\"]"));
 
         //8. click on vote
-        locateVote.click();
+       //locateVote.click();
 
     }
 
