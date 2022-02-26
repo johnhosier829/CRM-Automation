@@ -32,6 +32,8 @@ public class US13_SendAppreciation_Hakan {
         WebElement appreciationButton = driver.findElement(By.xpath("//span[.='Appreciation']/span[@class='menu-popup-item-text']"));
         appreciationButton.click();
 
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+
 
     }
 
@@ -40,9 +42,12 @@ public class US13_SendAppreciation_Hakan {
 
         driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@class='bx-editor-iframe']")));
 
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 
         WebElement appreciationInputBox = driver.findElement(By.xpath("//body[@contenteditable='true']"));
         appreciationInputBox.sendKeys("Thank You! This is a auto-message!");
+
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 
         driver.switchTo().parentFrame();
 
