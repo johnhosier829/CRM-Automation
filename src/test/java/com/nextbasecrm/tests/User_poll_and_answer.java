@@ -17,64 +17,115 @@ import java.util.concurrent.TimeUnit;
 
 public class User_poll_and_answer {
 
-        //1TC for login
-        /**
-         * 1-go to login page
-         * 2-write username
-         * 3-write password
-         * 4-click login button
-         */
-        WebDriver driver;
+    //1TC for login
+    /**
+     * 1-go to login page
+     * 2-write username
+     * 3-write password
+     * 4-click login button
+     */
+    WebDriver driver;
 
-        @BeforeMethod
-        public void setUp() {
-            driver = WebDriverFactory.getDriver(ConfigurationReader.getProperty("browser"));
-            driver.manage().window().maximize();
-            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-            //  1-go to login page
-            driver.get(ConfigurationReader.getProperty("env"));
+    @BeforeMethod
+    public void setUp() {
+        driver = WebDriverFactory.getDriver(ConfigurationReader.getProperty("browser"));
+        driver.manage().window().maximize();
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        //  1-go to login page
+        driver.get(ConfigurationReader.getProperty("env"));
+
+
+        WebElement userName = driver.findElement(By.xpath("(//input[@class='login-inp'])[1]"));
+        userName.sendKeys(ConfigurationReader.getProperty("username"));
+        //     * 3-write password
+        WebElement password = driver.findElement(By.xpath("(//input[@class='login-inp'])[2]"));
+        password.sendKeys(ConfigurationReader.getProperty("password"));
+        //     * 4-click login button
+        WebElement loginBtn = driver.findElement(By.xpath("//input[@type='submit']"));
+        BrowserUtils.sleep(3);
+        loginBtn.click();
+        // 5 verify title
+        String expectedTitle = "Portal";
+        String actualTitle = driver.getTitle();
+        Assert.assertEquals(actualTitle, expectedTitle);
+    }
+/*
+    }
+
+    @AfterMethod
+    public void tearDown() {
+        BrowserUtils.sleep(3);
+        driver.close();
+    }
+
+    //positive scenario
+    @BeforeMethod
+    public void login_with_valid_credentials_with_login_btn() {
+        // 2-write username
+
+    @Test
+    public void login_with_valid_credentials_with_enter_btn() {
+        // 2-write username
+        WebElement userName = driver.findElement(By.xpath("(//input[@class='login-inp'])[1]"));
+        userName.sendKeys(ConfigurationReader.getProperty("username"));
+        //     * 3-write password
+        WebElement password = driver.findElement(By.xpath("(//input[@class='login-inp'])[2]"));
+        password.sendKeys(ConfigurationReader.getProperty("password") + Keys.ENTER);
+        //     * 4-click login button
+        // 5 verify title
+        String expectedTitle = "Portal";
+        String actualTitle = driver.getTitle();
+        Assert.assertEquals(actualTitle, expectedTitle);
+    }
+
+ */
+
+    //User_poll_and_answer
+
+    @Test
+            public void user_poll_and_answer() throws InterruptedException {
+        //1. locate poll
+        WebElement findPoll = driver.findElement(By.xpath("//div[@class=\"bx-vote-body\"]"));
+
+        //2. locate first answer choice
+        WebElement answerChoice = driver.findElement(By.xpath("//table[@class=\"bx-vote-answer-list\"]//tr[1]"));
+
+        if(answerChoice.isDisplayed()){
+            System.out.println("is displayed");
+        }else{
+            WebElement voteAgain=driver.findElement(By.xpath("//button[@data-bx-vote-button=\"showVoteForm\"]"));
+            voteAgain.click();
         }
 
-        @AfterMethod
-        public void tearDown() {
-            BrowserUtils.sleep(3);
-            driver.close();
-        }
-        //positive scenario
-        @Test
-        public void login_with_valid_credentials_with_login_btn() {
-            // 2-write username
-            WebElement userName = driver.findElement(By.xpath("(//input[@class='login-inp'])[1]"));
-            userName.sendKeys(ConfigurationReader.getProperty("username"));
-            //     * 3-write password
-            WebElement password = driver.findElement(By.xpath("(//input[@class='login-inp'])[2]"));
-            password.sendKeys(ConfigurationReader.getProperty("password"));
-            //     * 4-click login button
-            WebElement loginBtn = driver.findElement(By.xpath("//input[@type='submit']"));
-            BrowserUtils.sleep(3);
-            loginBtn.click();
-            // 5 verify title
-            String expectedTitle="Portal";
-            String actualTitle=driver.getTitle();
-            Assert.assertEquals(actualTitle, expectedTitle);
-        }
-        @Test
-        public void login_with_valid_credentials_with_enter_btn() {
-            // 2-write username
-            WebElement userName = driver.findElement(By.xpath("(//input[@class='login-inp'])[1]"));
-            userName.sendKeys(ConfigurationReader.getProperty("username"));
-            //     * 3-write password
-            WebElement password = driver.findElement(By.xpath("(//input[@class='login-inp'])[2]"));
-            password.sendKeys(ConfigurationReader.getProperty("password")+ Keys.ENTER);
-            //     * 4-click login button
-            // 5 verify title
-            String expectedTitle="Portal";
-            String actualTitle=driver.getTitle();
-            Assert.assertEquals(actualTitle, expectedTitle);
-        }
+        //2. locate first answer choice
+        answerChoice = driver.findElement(By.xpath("//table[@class=\"bx-vote-answer-list\"]//tr[1]"));
 
-        //User_poll_and_answer
+        //3. click first answer choice
+        Thread.sleep(3);
+        answerChoice.click();
 
+        //4. locate second answer choice
+        WebElement answerChoice2 = driver.findElement(By.xpath("//table[@class=\"bx-vote-answer-list\"]//tr[2]"));
+
+        //5. click second answer choice
+        Thread.sleep(3);
+        answerChoice2.click();
+
+        //6. verify second answer choice is selected after clicking.
+        if (answerChoice2.isSelected()) {
+            System.out.println("Second Button is selected. Verification PASSED!");
+        } else {
+            System.out.println("Second Button is not selected. Verification Failed!");
+
+    }
+        //7. locate vote
+
+        WebElement locateVote = driver.findElement(By.xpath(" button[@class=\"ui-btn ui-btn-lg ui-btn-primary\"]"));
+
+        //8. click on vote
+        locateVote.click();
+
+    }
 
 /*
         //negative scenario
