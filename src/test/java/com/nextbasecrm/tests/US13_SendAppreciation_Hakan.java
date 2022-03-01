@@ -40,12 +40,10 @@ public class US13_SendAppreciation_Hakan {
         driver = WebDriverFactory.getDriver(properties.getProperty("browser"));
         driver.manage().window().maximize();
 
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 
         // Go to our environment
         driver.get(properties.getProperty("env"));
-
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
 
         // We need username in different places, so we created a variable for it
@@ -55,21 +53,17 @@ public class US13_SendAppreciation_Hakan {
         // Login using crm_login utilities
         CRM_Utilities.crm_login(driver, username, getProperty("password"));
 
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
 
         // Locate more button and click it
         WebElement moreButton = driver.findElement(By.xpath("//span[@id='feed-add-post-form-link-text']"));
         moreButton.click();
 
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
 
         // Locate appreciation button and click it
         WebElement appreciationButton = driver.findElement(By.xpath("//span[.='Appreciation']/span[@class='menu-popup-item-text']"));
         appreciationButton.click();
-
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
 
 
@@ -98,7 +92,7 @@ public class US13_SendAppreciation_Hakan {
         // There is a iFrame, so we have switch to that frame
         driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@class='bx-editor-iframe']")));
 
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 
 
         // Locate and fill the appreciation input box
@@ -109,7 +103,6 @@ public class US13_SendAppreciation_Hakan {
 
         appreciationInputBox.sendKeys(message);
 
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
         // We should switch to parent frame in order to use oder buttons
         driver.switchTo().parentFrame();
@@ -119,8 +112,6 @@ public class US13_SendAppreciation_Hakan {
         WebElement sendButton = driver.findElement(By.xpath("//button[@id='blog-submit-button-save']"));
         sendButton.click();
 
-
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
 
         // We need our date in order to make sure if the message is correct message (in this version "11:30 am")
@@ -132,7 +123,6 @@ public class US13_SendAppreciation_Hakan {
         // Print to check if it is correct
         System.out.println("Current Time --> "+currentTime);
 
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
 
         // Located 3 different element from our sent message (avoiding from bugs we need all 3)
@@ -157,7 +147,6 @@ public class US13_SendAppreciation_Hakan {
 
         */
 
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
 
         // Print to check if the texts are correct
@@ -166,7 +155,6 @@ public class US13_SendAppreciation_Hakan {
         System.out.println("notificationTimeCheck.getText() = " + notificationTimeCheck.getText());
 
 
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
 
         // Check if username is correct
@@ -227,7 +215,7 @@ public class US13_SendAppreciation_Hakan {
         WebElement sendButton = driver.findElement(By.xpath("//button[@id='blog-submit-button-save']"));
         sendButton.click();
 
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 
         // Locate warning message
         WebElement warningMessage = driver.findElement(By.xpath("//div[@class='feed-add-error']/span[@class='feed-add-info-text']"));
