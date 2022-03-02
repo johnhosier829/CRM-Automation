@@ -21,12 +21,8 @@ public class US12_Announcement_Alena {
         // Go to https://login2.nextbasecrm.com/
         driver = WebDriverFactory.getDriver("chrome");
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         driver.get("https://login2.nextbasecrm.com/");
-    }
-
-    @Test
-    public void sendAnnouncement() {
 
         WebElement inputUsername = driver.findElement(By.xpath("//input[@name = 'USER_LOGIN']"));
         inputUsername.sendKeys("helpdesk79@cydeo.com");
@@ -38,38 +34,40 @@ public class US12_Announcement_Alena {
         WebElement loginButton = driver.findElement(By.xpath("//input[@value ='Log In']"));
         loginButton.click();
 
-
         WebElement moreDropdown = driver.findElement(By.id("feed-add-post-form-link-text"));
         moreDropdown.click();
 
         WebElement announcement = driver.findElement(By.xpath("//span[.='Announcement']"));
         announcement.click();
 
+    }
+
+    @Test
+    public void sendAnnouncement() {
+
+
         driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@class='bx-editor-iframe']")));
 
         WebElement announcementMessage = driver.findElement(By.xpath("//body[@contenteditable='true']"));
-        String message = "Hi CRM testers!";
+        String message = "wooden Spoon";
         announcementMessage.sendKeys(message);
 
-        driver.switchTo().defaultContent();
+        driver.switchTo().parentFrame();
 
         WebElement sendButton = driver.findElement(By.xpath("//button[@id='blog-submit-button-save']"));
         sendButton.click();
 
 
         //  driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-
         // WebElement sendButton = driver.findElement(By.id("blog-submit-button-save"));
         // sendButton.click();
 
         WebElement feed = driver.findElement(By.xpath("//div[starts-with(@id,'blog_post_body')]"));
-        Assert.assertEquals(feed.getText(), "Hello Alena", "Message did not appear!");
+        Assert.assertEquals(feed.getText(), message, "Message did not appear!");
     }
 
         @Test
                 public void emptyAnnouncement(){
-        WebElement announcement = driver.findElement(By.xpath("//span[.='Announcement']"));
-        announcement.click();
 
         WebElement sendButton = driver.findElement(By.xpath("//button[@id='blog-submit-button-save']"));
         sendButton.click();
