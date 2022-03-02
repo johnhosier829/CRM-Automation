@@ -11,7 +11,7 @@ import org.testng.annotations.Test;
 import java.util.concurrent.TimeUnit;
 
 
-public class US13_ChatCallFunctionality_Anastasia {
+public class US8_ChatCallFunctionality_Anastasia {
 
    public WebDriver driver;
    @BeforeMethod
