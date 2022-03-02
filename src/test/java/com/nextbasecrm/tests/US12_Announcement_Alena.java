@@ -26,7 +26,7 @@ public class US12_Announcement_Alena {
     }
 
     @Test
-    public void crm_login() {
+    public void sendAnnouncement() {
 
         WebElement inputUsername = driver.findElement(By.xpath("//input[@name = 'USER_LOGIN']"));
         inputUsername.sendKeys("helpdesk79@cydeo.com");
@@ -56,13 +56,30 @@ public class US12_Announcement_Alena {
         sendButton.click();
 
 
-      //  driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        //  driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 
-       // WebElement sendButton = driver.findElement(By.id("blog-submit-button-save"));
-       // sendButton.click();
+        // WebElement sendButton = driver.findElement(By.id("blog-submit-button-save"));
+        // sendButton.click();
 
         WebElement feed = driver.findElement(By.xpath("//div[starts-with(@id,'blog_post_body')]"));
         Assert.assertEquals(feed.getText(), "Hello Alena", "Message did not appear!");
+    }
+
+        @Test
+                public void emptyAnnouncement(){
+        WebElement announcement = driver.findElement(By.xpath("//span[.='Announcement']"));
+        announcement.click();
+
+        WebElement sendButton = driver.findElement(By.xpath("//button[@id='blog-submit-button-save']"));
+        sendButton.click();
+
+            WebElement errorMessage = driver.findElement(By.xpath("//span[.='The message title is not specified']"));
+            String expectedResult = "The message title is not specified";
+            String actualResult = errorMessage.getText();
+
+            Assert.assertEquals(actualResult,expectedResult, "Warning message did not appear");
+
+
 
     }
 }
@@ -72,24 +89,15 @@ public class US12_Announcement_Alena {
 
 
 
-           /* announcementMessage.sendKeys("");
-            sendButton.click();
-
-            WebElement errorMessage = driver.findElement(By.xpath("//span[.='The message title is not specified']"));
-            String expectedResult2 = "The message title is not specified";
-            String actualResult2 = errorMessage.getText();
-
-            if (actualResult2.equals(expectedResult2)){
-                System.out.println("Test is passed");
-            }else {
-                System.out.println("Test is failed");
-            }
 
 
-        }
 
 
-}*/
+
+
+
+
+
 
 
 
