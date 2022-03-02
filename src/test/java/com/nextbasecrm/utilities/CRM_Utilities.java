@@ -1,7 +1,6 @@
 package com.nextbasecrm.utilities;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -13,7 +12,9 @@ public class CRM_Utilities {
      user when it is called
      */
 
+
     public static void crm_login(WebDriver driver) {
+
         //3. Enter valid username
         WebElement inputUsername = driver.findElement(By.xpath("//input[@name='USER_LOGIN']"));
         inputUsername.sendKeys("helpdesk1@cybertekschool.com");
