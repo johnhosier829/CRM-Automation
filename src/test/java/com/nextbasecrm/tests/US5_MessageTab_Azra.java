@@ -13,7 +13,7 @@ import org.testng.annotations.Test;
 
 import java.util.concurrent.TimeUnit;
 
-public class US_5_MessageTab_Azra {
+public class US5_MessageTab_Azra {
 
     WebDriver driver;
 
@@ -54,7 +54,7 @@ public class US_5_MessageTab_Azra {
 
         //write the text message
         WebElement textBox= driver.findElement(By.xpath("/html/body"));
-        String textMessage="Hello Group27 :)";
+        String textMessage="Hello Group27!";
         textBox.sendKeys(textMessage);
         BrowserUtils.sleep(3);
 
@@ -65,9 +65,12 @@ public class US_5_MessageTab_Azra {
         BrowserUtils.sleep(3);
 
         // verify the text message in Activity Stream
-        WebElement verifyTextMessage= driver.findElement(By.xpath(""));
+        WebElement verifyTextMessage= driver.findElement(By.xpath("//*[@class=\"feed-post-text-block-inner-inner\"][1]"));
+        verifyTextMessage.getText();
+        String postedTextMessage=verifyTextMessage.getText();
+        System.out.println("[+] Sent: "+ textMessage+", posted: "+ postedTextMessage);
 
-
+        Assert.assertEquals(textMessage, postedTextMessage);
     }
 
     @Test
@@ -103,9 +106,6 @@ public class US_5_MessageTab_Azra {
         BrowserUtils.sleep(3);
 
     }
-
-
-
 
 
     @AfterMethod
