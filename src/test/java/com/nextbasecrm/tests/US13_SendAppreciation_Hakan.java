@@ -135,6 +135,7 @@ public class US13_SendAppreciation_Hakan {
 
         /*
 
+
         These are some locators that I used
 
         //  Old dynamic locator --> //div[@class='feed-wrap']/div[@class='feed-item-wrap']//a[.='"+webUsername+"']
@@ -142,6 +143,7 @@ public class US13_SendAppreciation_Hakan {
         //  New dynamic locator --> //div[contains(@class, 'feed-post-cont-wrap sonet-log-item-createdby') and contains(@class, '-post sonet-')]//div[.='"+message+"']
         //  Old dynamic locator --> //div[contains(@class, 'feed-post-cont-wrap sonet-log-item-createdby') and contains(@class, '-post sonet-')]//div[@class='feed-time']
         //  New dynamic locator --> //div[contains(@class, 'feed-post-cont-wrap sonet-log-item-createdby') and contains(@class, '-post sonet-')]//div[contains(text(), '"+formatter.format(date)+"')]
+
 
         */
 
