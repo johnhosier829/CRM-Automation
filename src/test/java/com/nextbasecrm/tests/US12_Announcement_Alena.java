@@ -48,7 +48,8 @@ public class US12_Announcement_Alena {
         driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@class='bx-editor-iframe']")));
 
         WebElement announcementMessage = driver.findElement(By.xpath("//body[@contenteditable='true']"));
-        announcementMessage.sendKeys("Hello Alena");
+        String message = "Hi CRM testers!";
+        announcementMessage.sendKeys(message);
 
         driver.switchTo().defaultContent();
 
