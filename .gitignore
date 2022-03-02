@@ -1,3 +1,7 @@
 /.idea/
 /target/
 /.iml/
+/*.iml
+# comment using #hash sign
+#idea folder contains pc information then it creates conflicts
+#after iml don't put / this means directory but, /*.iml is file they are different things
