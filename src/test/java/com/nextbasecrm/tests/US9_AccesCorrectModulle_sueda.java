@@ -36,7 +36,7 @@ public class US9_AccesCorrectModulle_sueda {
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         driver.get(ConfigurationReader.getProperty("env"));
 
-//        submit.click();
+
         // Login using crm_login utilities
 
         CRM_Utilities.crm_login(driver, getProperty("username"), getProperty("password"));
