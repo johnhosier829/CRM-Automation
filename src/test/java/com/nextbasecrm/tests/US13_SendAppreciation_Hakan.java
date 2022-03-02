@@ -92,8 +92,6 @@ public class US13_SendAppreciation_Hakan {
         // There is a iFrame, so we have switch to that frame
         driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@class='bx-editor-iframe']")));
 
-        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-
 
         // Locate and fill the appreciation input box
         WebElement appreciationInputBox = driver.findElement(By.xpath("//body[@contenteditable='true']"));
@@ -137,6 +135,7 @@ public class US13_SendAppreciation_Hakan {
 
         /*
 
+
         These are some locators that I used
 
         //  Old dynamic locator --> //div[@class='feed-wrap']/div[@class='feed-item-wrap']//a[.='"+webUsername+"']
@@ -144,6 +143,7 @@ public class US13_SendAppreciation_Hakan {
         //  New dynamic locator --> //div[contains(@class, 'feed-post-cont-wrap sonet-log-item-createdby') and contains(@class, '-post sonet-')]//div[.='"+message+"']
         //  Old dynamic locator --> //div[contains(@class, 'feed-post-cont-wrap sonet-log-item-createdby') and contains(@class, '-post sonet-')]//div[@class='feed-time']
         //  New dynamic locator --> //div[contains(@class, 'feed-post-cont-wrap sonet-log-item-createdby') and contains(@class, '-post sonet-')]//div[contains(text(), '"+formatter.format(date)+"')]
+
 
         */
 
@@ -215,8 +215,6 @@ public class US13_SendAppreciation_Hakan {
         WebElement sendButton = driver.findElement(By.xpath("//button[@id='blog-submit-button-save']"));
         sendButton.click();
 
-        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-
         // Locate warning message
         WebElement warningMessage = driver.findElement(By.xpath("//div[@class='feed-add-error']/span[@class='feed-add-info-text']"));
 
@@ -229,6 +227,7 @@ public class US13_SendAppreciation_Hakan {
 
 
     }
+
 
 
 //  This method is commented because we want to check manually if everything worked as expected
