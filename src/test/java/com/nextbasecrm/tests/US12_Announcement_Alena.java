@@ -1,5 +1,6 @@
 package com.nextbasecrm.tests;
 
+import com.nextbasecrm.utilities.CRM_Utilities;
 import com.nextbasecrm.utilities.WebDriverFactory;
 import org.apache.hc.core5.http.Message;
 import org.openqa.selenium.By;
@@ -10,6 +11,9 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
 public class US12_Announcement_Alena {
@@ -17,22 +21,19 @@ public class US12_Announcement_Alena {
     WebDriver driver;
 
     @BeforeMethod
-    public void setupMethod() {
+    public void setupMethod() throws IOException {
+
+        Properties properties = new Properties();
+        FileInputStream file = new FileInputStream("configuration.properties");
+        properties.load(file);
+
         // Go to https://login2.nextbasecrm.com/
         driver = WebDriverFactory.getDriver("chrome");
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-        driver.get("https://login2.nextbasecrm.com/");
+        driver.get(properties.getProperty("env"));
 
-        WebElement inputUsername = driver.findElement(By.xpath("//input[@name = 'USER_LOGIN']"));
-        inputUsername.sendKeys("helpdesk79@cydeo.com");
-
-        WebElement inputPassword = driver.findElement(By.xpath("//input[@name = 'USER_PASSWORD']"));
-        inputPassword.sendKeys("UserUser");
-
-
-        WebElement loginButton = driver.findElement(By.xpath("//input[@value ='Log In']"));
-        loginButton.click();
+        CRM_Utilities.crm_login(driver, properties.getProperty("username"), properties.getProperty("password"));
 
         WebElement moreDropdown = driver.findElement(By.id("feed-add-post-form-link-text"));
         moreDropdown.click();
@@ -49,7 +50,7 @@ public class US12_Announcement_Alena {
         driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@class='bx-editor-iframe']")));
 
         WebElement announcementMessage = driver.findElement(By.xpath("//body[@contenteditable='true']"));
-        String message = "wooden Spoon";
+        String message = "NOW";
         announcementMessage.sendKeys(message);
 
         driver.switchTo().parentFrame();
@@ -63,7 +64,13 @@ public class US12_Announcement_Alena {
         // sendButton.click();
 
         WebElement feed = driver.findElement(By.xpath("//div[starts-with(@id,'blog_post_body')]"));
-        Assert.assertEquals(feed.getText(), message, "Message did not appear!");
+
+        System.out.println("feed.getText() = " + feed.getText());
+
+        boolean containsMessage = feed.getText().contains(message);
+
+        Assert.assertTrue(containsMessage, "Message did not appear!");
+
     }
 
         @Test
